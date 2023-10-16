@@ -25,17 +25,25 @@ public:
 	void CriarChave(HKEY Diretorio, wstring Chave, bool Remover)
 	{
 		if (Remover == true)
+		{
 			RegDeleteKeyEx(Diretorio, Chave.c_str(), KEY_ALL_ACCESS, 0);
+		}
 		else
+		{
 			RegCreateKeyEx(Diretorio, Chave.c_str(), 0, 0, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, 0, &Result, 0);
+		}
 	}
 
 	void CriarUmRegistro(HKEY Diretorio, wstring Chave, wstring Dados, bool Remover)
 	{
 		if (Remover == true)
+		{
 			RegDeleteValue(Diretorio, Chave.c_str());
+		}
 		else
+		{
 			RegSetValueEx(Diretorio, Chave.c_str(), 0, REG_SZ, (BYTE*)Dados.c_str(), sizeof(Dados));
+		}
 	}
 
 	void EnumerarRegistros(HKEY Diretorio)
