@@ -34,7 +34,7 @@ public:
 		}
 	}
 
-	void CriarUmRegistro(HKEY Diretorio, wstring Chave, wstring Dados, bool Remover)
+	void CriarUmRegistro(HKEY Diretorio, wstring Chave, const wchar_t* Dados, bool Remover)
 	{
 		if (Remover == true)
 		{
@@ -42,7 +42,7 @@ public:
 		}
 		else
 		{
-			RegSetValueEx(Diretorio, Chave.c_str(), 0, REG_SZ, (BYTE*)Dados.c_str(), sizeof(Dados));
+			RegSetValueEx(Diretorio, Chave.c_str(), 0, REG_SZ, (BYTE*)Dados, sizeof(wchar_t) * lstrlen(Dados));
 		}
 	}
 
